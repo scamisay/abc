@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<style>
+
+			body{ 
+				font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+				color: #555;
+				}
+
+			.chart {
+			  position: relative;
+			  display: inline-block;
+			  width: 150px;
+			  height: 150px;
+			  margin-top: 50px;
+			  margin-bottom: 50px;
+			  text-align: center;
+			  margin-right:22px;
+			  font-weight:bold;
+			}
+			.chart canvas {
+			  position: absolute;
+			  top: 0;
+			  left: 0;
+			}
+			.percent {
+			  display: inline-block;
+			  line-height: 160px;
+			  z-index: 2;
+			}
+			.percent:after {
+			  content: '%';
+			  margin-left: 0.1em;
+			  font-size: .8em;
+			}
+		</style>
+		
+	</head>
+	<body>
+
+		<div class="javascript chart" data-percent="68">
+		    <span class="percent"></span>
+		    <p>Proyectos</p>
+		</div>
+		<div class="html5 chart" data-percent="75">
+		    <span class="percent"></span>
+		    <p>Finanzas</p>
+		</div>
+		<div class="css chart" data-percent="83">
+		    <span class="percent"></span>
+		    <p>Tutores</p>
+		</div>
+		<div class="php chart" data-percent="55">
+		    <span class="percent"></span>
+		    <p>Auditoria</p>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/easy-pie-chart/2.1.6/easypiechart.js"></script>
+<script>
+window.onload = function() {
+<!--  selecciono la clase javascript -->
+    var javascript = document.querySelector('.javascript');
+    new EasyPieChart(javascript, {
+        <!-- activo la animación y establezco su duración a un segundo -->
+        animate: ({ duration: 1000, enabled: true }),
+        <!-- aumento la longitud de las lineas de la gráfica -->
+        scaleLength:10,
+        <!-- aumento el tamaño de la gráfica -->
+        size:150,
+        <!-- añado el número del porcentaje que se muestra en el span -->
+        onStep: function(from, to, percent) {
+            this.el.children[0].innerHTML = Math.round(percent);
+        }
+    });
+    var html5 = document.querySelector('.html5');
+    new EasyPieChart(html5, {
+        animate: ({ duration: 2000, enabled: true }),
+        scaleLength:10,
+        size:150,
+        barColor:'#FF8000',
+        onStep: function(from, to, percent) {
+            this.el.children[0].innerHTML = Math.round(percent);
+        }
+    });
+    var css = document.querySelector('.css');
+    new EasyPieChart(css, {
+        animate: ({ duration: 3000, enabled: true }),
+        scaleLength:10,
+        size:150,
+        barColor:'#58ACFA',
+        onStep: function(from, to, percent) {
+            this.el.children[0].innerHTML = Math.round(percent);
+        }
+    });
+    var php = document.querySelector('.php');
+    new EasyPieChart(php, {
+        animate: ({ duration: 3000, enabled: true }),
+        scaleLength:10,
+        size:150,
+        barColor:'#1C1C1C',
+        onStep: function(from, to, percent) {
+            this.el.children[0].innerHTML = Math.round(percent);
+        }
+    });
+}
+ 
+</script>
+	</body>
+</html>
